@@ -1,5 +1,5 @@
 project(mylib)
-
+set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/install)
 add_library(mylib STATIC main.cpp)
 target_include_directories(${PROJECT_NAME}
         PUBLIC
