@@ -2,17 +2,16 @@ cmake_minimum_required(VERSION 3.19)
 project(test)
 
 execute_process(COMMAND ${CMAKE_COMMAND}
--G "${CMAKE_GENERATOR}"
--A "${CMAKE_GENERATOR_PLATFORM}"
--T "${CMAKE_GENERATOR_TOOLSET}"
-${CMAKE_CURRENT_LIST_DIR}/secondlib
-WORKING_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/secondlib/build")
+        -G "${CMAKE_GENERATOR}"
+        -A "${CMAKE_GENERATOR_PLATFORM}"
+        -T "${CMAKE_GENERATOR_TOOLSET}"
+        -B ${CMAKE_CURRENT_LIST_DIR}/secondlib/build
+        -S ${CMAKE_CURRENT_LIST_DIR}/secondlib)
 
 execute_process(COMMAND ${CMAKE_COMMAND}
-        --build .
-        --config ${CMAKE_BUILD_TYPE}
+        --build ${CMAKE_CURRENT_LIST_DIR}/secondlib/build
         --target install
-        WORKING_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/secondlib/build")
+        COMMAND_ECHO STDOUT)
 
 find_package(MyLib PATHS ${CMAKE_CURRENT_LIST_DIR}/secondlib/install/lib/cmake/MyLib)
 

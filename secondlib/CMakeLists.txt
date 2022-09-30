@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.19)
 project(mylib)
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_LIST_DIR}/install)
 add_library(mylib STATIC main.cpp)
